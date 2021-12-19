@@ -1,18 +1,23 @@
 package skypro.com.springhomework;
 
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class EmployeeService{
 
-    private final Set<Employee> employees;
+    private String getKey(Employee employee) {
+        return getKey(employee.getFirstName(), employee.getSecondName());
+    }
+
+    private String getKey(String firstName, String secondName) {
+        return firstName + "_" + secondName;
+    }
+
+    private final Map<String ,Employee> employees;
 
     public EmployeeService() {
-        employees = new HashSet<>();
+        employees = new LinkedHashMap<>();
     }
 
     public Employee add(String firstName, String secondName) {
@@ -21,8 +26,9 @@ public class EmployeeService{
     }
 
     public Employee add(Employee employee) {
-        if (!employees.add(employee)) {
+        String key = getKey(employee);
 
+        if (!employees.containsKey(key)) {
             throw new EmployeeExistsException();
         }
         return employee;
@@ -34,7 +40,8 @@ public class EmployeeService{
         }
 
         public Employee remove (Employee employee){
-            if (!employees.remove(employee)) {
+            Employee deletedValue = employees.remove(getKey(employee));
+            if (deletedValue == null) {
                 throw new EmployeeNotFoundException();
             }
 
@@ -42,8 +49,9 @@ public class EmployeeService{
         }
 
         public Employee find (String firstName, String secondName){
-            Employee employee = new Employee(firstName, secondName);
-            if (!employees.contains(employee)) {
+            String key = getKey(firstName, secondName);
+            Employee employee = employees.get(key);
+            if (employee == null) {
                 throw new EmployeeNotFoundException();
             }
                 return employee;
@@ -51,6 +59,6 @@ public class EmployeeService{
 
 
     public Collection<Employee> getAll() {
-        return Set.copyOf(employees);
+        return Set.copyOf(employees.values());
     }
 }
