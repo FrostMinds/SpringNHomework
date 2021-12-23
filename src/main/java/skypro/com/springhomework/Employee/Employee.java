@@ -1,4 +1,4 @@
-package skypro.com.springhomework;
+package skypro.com.springhomework.Employee;
 
 
 import java.util.Objects;
@@ -10,11 +10,19 @@ public class Employee {
     private int department;
     private int salary;
 
-    public Employee(String firstName, String secondName) {
+    public Employee (String firstName, String secondName) {
+        this(firstName, secondName, 0, 0);
+    }
+
+    public Employee(String firstName, String secondName, int department, int salary) {
         this.firstName = firstName;
         this.secondName = secondName;
-        this.department = 0;
-        this.salary = 0;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    public boolean inDepartment(int department) {
+        return this.department == department;
     }
 
     public String getFirstName() {

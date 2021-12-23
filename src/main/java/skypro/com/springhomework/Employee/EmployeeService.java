@@ -1,8 +1,9 @@
-package skypro.com.springhomework;
+package skypro.com.springhomework.Employee;
 
 import java.util.Collection;
 
 public interface EmployeeService {
+
     Employee add(String firstName, String secondName);
 
     Employee add(Employee employee);

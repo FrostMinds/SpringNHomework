@@ -1,4 +1,4 @@
-package skypro.com.springhomework;
+package skypro.com.springhomework.Employee;
 
 public class EmployeeNotFoundException extends RuntimeException{
 
