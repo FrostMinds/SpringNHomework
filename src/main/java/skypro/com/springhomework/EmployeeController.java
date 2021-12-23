@@ -11,32 +11,33 @@ import java.util.Collection;
 @RequestMapping("/employee")
 
 public class EmployeeController {
-    private final EmployeeService employeeService;
+    private final EmployeeServiceImpl employeeServiceImpl;
 
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EmployeeController(EmployeeServiceImpl employeeServiceImpl) {
+        this.employeeServiceImpl = employeeServiceImpl;
     }
 
     @GetMapping("/add")
-    public String add(@RequestParam String firstName, @RequestParam String secondName) {
-        Employee result = employeeService.add(firstName, secondName);
+    public String add(@RequestParam String firstName, @RequestParam String secondName,
+                      @RequestParam int department, @RequestParam int salary) {
+        Employee result = employeeServiceImpl.add(firstName, secondName, department, salary);
         return generateMessage(result, "добавлен в список");
     }
 
     @GetMapping("/remove")
     public String remove(@RequestParam String firstName, @RequestParam String secondName) {
-        Employee result = employeeService.remove(firstName, secondName);
+        Employee result = employeeServiceImpl.remove(firstName, secondName);
         return generateMessage(result, "удалён из списка");
     }
 
     @GetMapping
     public Employee find(@RequestParam String firstName, @RequestParam String secondName) {
-        return employeeService.find(firstName, secondName);
+        return employeeServiceImpl.find(firstName, secondName);
     }
 
     @GetMapping("/all")
     public Collection<Employee> all() {
-        return employeeService.getAll();
+        return employeeServiceImpl.getAll();
     }
 
     private String generateMessage(Employee employee, String status) {
