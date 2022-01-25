@@ -1,6 +1,8 @@
 package skypro.com.springhomework.Service.Impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import skypro.com.springhomework.Data.Employee;
 import skypro.com.springhomework.Exception.EmployeeExistsException;
 import skypro.com.springhomework.Exception.EmployeeNotFoundException;
@@ -30,7 +32,10 @@ public abstract class EmployeeServiceImpl implements EmployeeService {
 
 
     public Employee add(String firstName, String secondName, int department, int salary) {
-        Employee newEmployee = new Employee(firstName, secondName);
+        Employee newEmployee = new Employee(StringUtils.capitalize(firstName), StringUtils.capitalize(secondName));
+        if (!StringUtils.isAlpha(firstName) || !StringUtils.isAlpha(secondName)) {
+            throw new IllegalArgumentException();
+        }
         return add(newEmployee);
     }
 
