@@ -18,6 +18,9 @@ public class CalculatorService {
     }
 
     public int division(int num1, int num2) {
+        if (num2 == 0) {
+            throw new IllegalArgumentException("Non zero value for num2 is required");
+        }
         return num1 / num2;
     }
 }
