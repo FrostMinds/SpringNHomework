@@ -3,7 +3,7 @@ package skypro.com.springhomework.Data;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,7 +14,7 @@ public class ShoppingCart {
     private final Set<Integer> itemIDs;
 
     public ShoppingCart() {
-        this.itemIDs = new HashSet<>();
+        this.itemIDs = new LinkedHashSet<>();
     }
 
     public void addItem(int itemID) {
