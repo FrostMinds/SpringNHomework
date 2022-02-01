@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public interface EmployeeService {
 
-    Employee add(String firstName, String secondName);
+    Employee add(String firstName, String secondName, int department1, int salary1);
 
     Employee add(Employee employee);
 

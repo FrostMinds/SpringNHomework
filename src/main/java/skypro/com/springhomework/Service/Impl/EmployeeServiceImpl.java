@@ -7,13 +7,14 @@ import skypro.com.springhomework.Exception.EmployeeExistsException;
 import skypro.com.springhomework.Exception.EmployeeNotFoundException;
 import skypro.com.springhomework.Service.EmployeeService;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 
 
 @Service
-public abstract class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
 
     private final Set<Employee> employees;
 
@@ -59,11 +60,16 @@ public abstract class EmployeeServiceImpl implements EmployeeService {
 
         return employee;
     }
-    public Employee find (String firstName, String secondName) {
+    public Employee find(String firstName, String secondName) {
         Employee employee = new Employee(firstName, secondName);
         if (!employees.contains(employee)) {
             throw new EmployeeNotFoundException();
         }
         return employee;
+    }
+
+    @Override
+    public Collection<Employee> getAll() {
+        return null;
     }
 }
