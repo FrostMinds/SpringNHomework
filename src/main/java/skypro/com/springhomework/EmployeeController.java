@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/employee")
 
 public class EmployeeController {
-    int a = 1;
-
     private final EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
@@ -32,6 +32,11 @@ public class EmployeeController {
     @GetMapping
     public Employee find(@RequestParam String firstName, @RequestParam String secondName) {
         return employeeService.find(firstName, secondName);
+    }
+
+    @GetMapping("/all")
+    public Collection<Employee> all() {
+        return employeeService.getAll();
     }
 
     private String generateMessage(Employee employee, String status) {
