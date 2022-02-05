@@ -1,56 +1,17 @@
 package skypro.com.springhomework;
 
-import org.springframework.stereotype.Service;
-
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
-@Service
-public class EmployeeService{
+public interface EmployeeService {
+    Employee add(String firstName, String secondName);
 
-    private final Set<Employee> employees;
+    Employee add(Employee employee);
 
-    public EmployeeService() {
-        employees = new HashSet<>();
-    }
+    Employee remove(String firstName, String secondName);
 
-    public Employee add(String firstName, String secondName) {
-        Employee newEmployee = new Employee(firstName, secondName);
-        return add(newEmployee);
-    }
+    Employee remove(Employee employee);
 
-    public Employee add(Employee employee) {
-        if (!employees.add(employee)) {
+    Employee find(String firstName, String secondName);
 
-            throw new EmployeeExistsException();
-        }
-        return employee;
-    }
-
-        public Employee remove(String firstName, String secondName){
-            Employee newEmployee = new Employee(firstName, secondName);
-            return remove(newEmployee);
-        }
-
-        public Employee remove (Employee employee){
-            if (!employees.remove(employee)) {
-                throw new EmployeeNotFoundException();
-            }
-
-            return employee;
-        }
-
-        public Employee find (String firstName, String secondName){
-            Employee employee = new Employee(firstName, secondName);
-            if (!employees.contains(employee)) {
-                throw new EmployeeNotFoundException();
-            }
-                return employee;
-        }
-
-
-    public Collection<Employee> getAll() {
-        return Set.copyOf(employees);
-    }
+    Collection<Employee> getAll();
 }
