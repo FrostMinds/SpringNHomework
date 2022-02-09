@@ -1,21 +1,23 @@
-package skypro.com.springhomework.ExaminerService.service;
+package skypro.com.springhomework.Courserwork.Service;
 
 import org.springframework.stereotype.Service;
-import skypro.com.springhomework.ExaminerService.domain.Question;
+import skypro.com.springhomework.Courserwork.Domain.Question;
 
-import java.util.Collection;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class JavaQuestionService implements QuestionService {
     Set<Question> questions;
 
+    public JavaQuestionService() {
+        this.questions = new HashSet<>();
+    }
 
     @Override
     public Question add(String question, String answer) {
         Question newQuestion = new Question(question, answer);
-        return add(newQuestion);
+        questions.add(newQuestion);
+        return newQuestion;
     }
 
     @Override
@@ -32,12 +34,13 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Collection<Question> getAll() {
-        return null;
+        return questions;
     }
 
     @Override
     public Question getRandomQuestion() {
-        Random random;
-        return null;
+        Random random = new Random();
+        List<Question> questionList = new ArrayList<>(questions);
+        return questionList.get(random.nextInt(questionList.size()));
     }
 }

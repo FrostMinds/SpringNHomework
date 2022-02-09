@@ -1,6 +1,6 @@
-package skypro.com.springhomework.ExaminerService.service;
+package skypro.com.springhomework.Courserwork.Service;
 
-import skypro.com.springhomework.ExaminerService.domain.Question;
+import skypro.com.springhomework.Courserwork.Domain.Question;
 
 import java.util.Collection;
 

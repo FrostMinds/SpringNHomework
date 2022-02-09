@@ -1,4 +1,4 @@
-package skypro.com.springhomework.ExaminerService.domain;
+package skypro.com.springhomework.Courserwork.Domain;
 
 import java.util.Objects;
 
