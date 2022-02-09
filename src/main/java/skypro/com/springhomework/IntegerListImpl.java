@@ -1,6 +1,7 @@
 package skypro.com.springhomework;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class IntegerListImpl implements IntegerList {
 
@@ -165,26 +166,63 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-
-    public static int[] sortBubble(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
+    public void sortBubble() {
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                if (data[j] > data[j + 1]) {
+                    swapElements(data, j, j + 1);
                 }
             }
         }
-
-        int[] generateRandomArray; {
-            java.util.Random random = new java.util.Random();
-            arr = new int[30];
-            for (int i = 0; i < arr.length; i++) {
-                arr[i] = random.nextInt(100_000) + 100_000;
-            }
-            return arr;
-
-        }
-
     }
 
+    public void sortSelection() {
+        for (int i = 0; i < size - 1; i++) {
+            int minElementIndex = i;
+            for (int j = i + 1; j < size; j++) {
+                if (data[j] < data[minElementIndex]) {
+                    minElementIndex = j;
+                }
+            }
+            swapElements(data, i, minElementIndex);
+        }
+    }
 
+    public void sortInsertion() {
+        for (int i = 1; i < size; i++) {
+            int temp = data[i];
+            int j = i;
+            while (j > 0 && data[j - 1] >= temp) {
+                data[j] = data[j - 1];
+                j--;
+            }
+            data[j] = temp;
+        }
+    }
+
+    private static void swapElements(Integer[] arr, int indexA, int indexB) {
+        Integer tmp = arr[indexA];
+        arr[indexA] = arr[indexB];
+        arr[indexB] = tmp;
+    }
+
+    private Integer binarySearch(Integer element) {
+        int min = 0;
+        int max = size - 1;
+
+        while (min <= max) {
+            int mid = (min + max) / 2;
+
+            if (Objects.equals(element, data[mid])) {
+                return mid;
+            }
+
+            if (element < data[mid]) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+        return - 1;
+    }
 }
