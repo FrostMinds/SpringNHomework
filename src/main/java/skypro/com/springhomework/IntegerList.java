@@ -39,7 +39,7 @@ public interface IntegerList {
 
     // Проверка на существование элемента.
     // Вернуть true/false;
-    boolean contains(Integer item);
+    Integer contains(Integer item);
 
     // Поиск элемента.
     // Вернуть индекс элемента
@@ -77,10 +77,6 @@ public interface IntegerList {
     // из строк в списке
     // и вернуть его.
     Integer[] toArray();
-
-    void sortBubble();
-
-    void sortSelection();
 
     void sortInsertion();
 }

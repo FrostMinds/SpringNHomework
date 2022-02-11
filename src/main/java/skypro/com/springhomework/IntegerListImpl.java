@@ -69,8 +69,9 @@ public class IntegerListImpl implements IntegerList {
     }
 
     @Override
-    public boolean contains(Integer item) {
-        return indexOf(item) >= 0;
+    public Integer contains(Integer item) {
+        sort();
+        return binarySearch(item);
     }
 
     @Override
@@ -166,28 +167,6 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    public void sortBubble() {
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = 0; j < size - 1 - i; j++) {
-                if (data[j] > data[j + 1]) {
-                    swapElements(data, j, j + 1);
-                }
-            }
-        }
-    }
-
-    public void sortSelection() {
-        for (int i = 0; i < size - 1; i++) {
-            int minElementIndex = i;
-            for (int j = i + 1; j < size; j++) {
-                if (data[j] < data[minElementIndex]) {
-                    minElementIndex = j;
-                }
-            }
-            swapElements(data, i, minElementIndex);
-        }
-    }
-
     public void sortInsertion() {
         for (int i = 1; i < size; i++) {
             int temp = data[i];
@@ -204,6 +183,10 @@ public class IntegerListImpl implements IntegerList {
         Integer tmp = arr[indexA];
         arr[indexA] = arr[indexB];
         arr[indexB] = tmp;
+    }
+
+    private void sort() {
+        sortInsertion();
     }
 
     private Integer binarySearch(Integer element) {
