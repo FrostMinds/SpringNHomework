@@ -119,6 +119,11 @@ public class IntegerListImpl implements IntegerList {
         return true;
     }
 
+    public Integer copyOfData() {
+        Arrays.copyOf(data, data.length);
+        return copyOfData();
+    }
+
     @Override
     public int size() {
         return size;
@@ -208,4 +213,6 @@ public class IntegerListImpl implements IntegerList {
         }
         return - 1;
     }
+
+
 }
