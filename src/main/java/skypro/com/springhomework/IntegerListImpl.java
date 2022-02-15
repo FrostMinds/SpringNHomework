@@ -214,5 +214,10 @@ public class IntegerListImpl implements IntegerList {
         return - 1;
     }
 
-
+    @Override
+    public String toString() {
+        return "IntegerListImpl{" +
+                "data=" + Arrays.toString(data) +
+                '}';
+    }
 }
